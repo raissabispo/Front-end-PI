@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import icon from "../assets/icon.png";
+import ButtonSubmit from "../components/buttons/ButtonSubmit";
+import SearchInput from "../components/searchInput/SearchInput";
 
 function Login() {
   const [senha, setSenha] = useState("");
@@ -35,35 +37,13 @@ function Login() {
       </div>
 
       <form onSubmit={handleSubmit} className="login-form">
-        <label>
-          Usuário:
-        <input
-          type="text"
-          value={tipoUsuario}
-          onChange={(e) => setTipoUsuario(e.target.value)}
-          placeholder="Digite seu usuário"
-          required>
-        </input>
-        </label>
-
-        <label>
-          Senha:
-          <input className="mostrarSenha"
-            type={mostrarSenha ? "text" : "password"} 
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            required
-          />
-        </label>
+        <SearchInput label="Usuário" type="text" value={tipoUsuario} onChange={(e) => setTipoUsuario(e.target.value)} placeholder="Digite seu usuário" required />
+        <SearchInput label="Senha" className="mostrarSenha" type={mostrarSenha ? "text" : "password"}  value={senha} onChange={(e) => setSenha(e.target.value)} required/>
 
     {/* Opções de senha */}
     <div className="senha-opcoes">
   <label className="mostrar-senha">
-    <input
-      type="checkbox"
-      checked={mostrarSenha}
-      onChange={() => setMostrarSenha(!mostrarSenha)}
-    />
+    <SearchInput type="checkbox" checked={mostrarSenha} onChange={() => setMostrarSenha(!mostrarSenha)} />
     Mostrar senha
   </label>
 
@@ -73,7 +53,7 @@ function Login() {
 </div>
 
 
-        <button type="submit">Entrar</button>
+        <ButtonSubmit text="Entrar" />
       </form>
     </div>
   );
