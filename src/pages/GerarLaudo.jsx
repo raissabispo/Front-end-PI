@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar"; 
 import jsPDF from "jspdf";
-import "../styles/GerarLaudo.css";
+import "../styles/global.css";
 
   const GerarLaudo = () => {
     const [dados, setDados] = useState({
-    numeroCaso: "",
+    nomeCaso:"",
     data: "",
     hora:"",
     perito:"",
@@ -43,7 +43,7 @@ import "../styles/GerarLaudo.css";
     doc.text("LAUDO ODONTOLÓGICO PERICIAL", 20, 20);
 
     doc.setFontSize(12);
-    doc.text(`Número do Caso: ${dados.numeroCaso}`, 20, 30);
+    doc.text(`Nome do Caso: ${dados.nomeCaso}`, 20, 30);
     doc.text(`Data: ${dados.data}`, 20, 40);
     doc.text(`Hora:${dados.hora}` , 20, 50 );
     doc.text(`Perito Responsável: ${dados.perito}`, 20, 70);
@@ -79,11 +79,25 @@ import "../styles/GerarLaudo.css";
     <div className="dashboard-container">
       <Sidebar /> {/* Adicionando o Sidebar */}
 
-    <div className="gerar-laudo-container">
+    <div className="container">
       <h2>Gerar Laudo</h2>
 
-    <label>Número do Caso :</label>
-    <input type="text" name="numeroCaso" onChange={handleChange}></input>
+      <label>Caso</label>
+          <select
+            name="numeroCaso"
+            value={dados.numeroCaso}
+            onChange={handleChange}
+            className="input"
+          >
+            <option value="">Selecione um caso</option>
+            <option value="Caso 001">Caso 001</option>
+            <option value="Caso 002">Caso 002</option>
+            <option value="Caso 003">Caso 003</option>
+          </select>
+      
+
+    <label>Nome do Caso :</label>
+    <input type="text" name="nomeCaso" onChange={handleChange}></input>
 
     <label>Data :</label>
     <input type="date" name="data" onChange={handleChange}></input>
