@@ -56,7 +56,7 @@ function RegisterPerito() {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="container">
       <Sidebar /> {/* Adicionando o sidebar */}
       <h2>Cadastrar Novo Perito </h2>
       {toast.show && (
