@@ -1,12 +1,15 @@
 // src/pages/Dashboard.js
 import React from "react";
-import { Link } from "react-router-dom";
+import { /*Link, Navigate,*/ useNavigate } from "react-router-dom";
 import Sidebar from "../components/sidebar/Sidebar.jsx";
 import Button from "../components/buttons/Button.jsx";
-import "../styles/Dashboard.css";
+import "../styles/global.css";
 import CaseCard from "../components/caseCard/CaseCard.jsx";
 
 function Dashboard() {
+
+  const navigate = useNavigate();
+
   const casos = [
     //casos
     {
@@ -51,8 +54,13 @@ function Dashboard() {
         return "";
     }
   };
+
+
+  const handleClick = () => {
+    navigate('/gerar-novo-caso');
+  };
   return (
-    <div className="dashboard-container">
+    <div className="container">
       <Sidebar /> {/* Adicionando o sidebar */}
       <div className="content-container">
         <div className="header-dashboard">

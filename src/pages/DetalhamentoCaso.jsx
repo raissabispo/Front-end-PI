@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../components/sidebar/Sidebar";
-import "../styles/Detalhamento.css";
+import "./../styles/global.css";
 import Button from "../components/buttons/Button";
 import CaseDetails from "../components/caseDetails/CaseDetails";
 import CaseDetailsCard from "../components/caseDetailsCard/caseDetailsCard";

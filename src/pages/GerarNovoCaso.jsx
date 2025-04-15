@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "../components/sidebar/Sidebar"; 
-import "../styles/GerarNovoCaso.css"
+import "./../styles/global.css";
 import ButtonSubmit from "../components/buttons/ButtonSubmit";
 import SearchInput from "../components/searchInput/SearchInput";
 
@@ -22,7 +22,7 @@ function GerarNovoCaso() {
     <div className="dashboard-container">
       <Sidebar/>
 
-      <div className="gerar-caso">
+      <div className="container">
         <h2>Adicionar Novo Caso </h2>
 
        <form onSubmit={handleSubmit}>

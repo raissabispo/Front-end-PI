@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Sidebar from "../components/sidebar/Sidebar";
 import jsPDF from "jspdf";
-import "../styles/GerarLaudo.css";
+import "./../styles/global.css";
 import SearchInput from "../components/searchInput/SearchInput";
 import ButtonOnClick from "../components/buttons/ButtonOnClick";
 
 const GerarLaudo = () => {
   const [dados, setDados] = useState({
-    numeroCaso: "",
+    nomeCaso: "",
     data: "",
     hora: "",
     perito: "",
@@ -45,7 +45,7 @@ const GerarLaudo = () => {
     doc.text("LAUDO ODONTOLÓGICO PERICIAL", 20, 20);
 
     doc.setFontSize(12);
-    doc.text(`Número do Caso: ${dados.numeroCaso}`, 20, 30);
+    doc.text(`Nome do Caso: ${dados.nomeCaso}`, 20, 30);
     doc.text(`Data: ${dados.data}`, 20, 40);
     doc.text(`Hora:${dados.hora}`, 20, 50);
     doc.text(`Perito Responsável: ${dados.perito}`, 20, 70);
@@ -81,6 +81,19 @@ const GerarLaudo = () => {
       <Sidebar /> {/* Adicionando o Sidebar */}
       <div className="gerar-laudo-container">
         <h2>Gerar Laudo</h2>
+
+        <label>Caso</label>
+          <select
+            name="numeroCaso"
+            value={dados.numeroCaso}
+            onChange={handleChange}
+            className="input"
+          >
+            <option value="">Selecione um caso</option>
+            <option value="Caso 001">Caso 001</option>
+            <option value="Caso 002">Caso 002</option>
+            <option value="Caso 003">Caso 003</option>
+          </select>
 
         <label>Número do Caso :</label>
         <SearchInput type="text" name="numeroCaso" onChange={handleChange} />
@@ -124,21 +137,11 @@ const GerarLaudo = () => {
 
         <h4> Métodos Utilizados:</h4>
         <label>
-          <input
-            type="checkbox"
-            name="metodos"
-            value="Radiografia"
-            onChange={handleChange}
-          />
+          <SearchInput type="checkbox" name="metodos" value="Radiografia" onChange={handleChange} /> 
           Radiografia
         </label>
         <label>
-          <input
-            type="checkbox"
-            name="metodos"
-            value="Fotografia"
-            onChange={handleChange}
-          />
+        <SearchInput type="checkbox" name="metodos" value="Fotografia" onChange={handleChange} /> 
           Fotografia
         </label>
         <h3>Achados Periciais</h3>
