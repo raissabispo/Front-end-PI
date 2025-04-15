@@ -1,4 +1,4 @@
-const CaseCard = (caso, getStatusClass) => {
+const CaseCard = ({caso, getStatusClass}) => {
     return(
   <div key={caso.id} className="card">
     <h3>{caso.titulo}</h3>

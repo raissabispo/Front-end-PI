@@ -79,7 +79,7 @@ const GerarLaudo = () => {
   return (
     <div className="dashboard-container">
       <Sidebar /> {/* Adicionando o Sidebar */}
-      <div className="gerar-laudo-container">
+      <div className="container">
         <h2>Gerar Laudo</h2>
 
         <label>Caso</label>

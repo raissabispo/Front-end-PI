@@ -11,6 +11,14 @@ function AdmSignUpContainer({
   setCargo,
   setAcesso,
 }) {
+  const users =[
+    { nome: 'Heytor Pimentel', email: 'heytorpi234@gmail.com', cargo: 'Assistente'},
+    { nome: 'Victor Santos', email: 'victorsa234@gmail.com', cargo: 'Perito'},
+    { nome: 'Caio Lira', email: 'caioli234@gmail.com', cargo: 'Perito'},
+    { nome: 'Heytor Pimentel', email: 'heytorpi234@gmail.com', cargo: 'Assistente'},
+    { nome: 'Victor Santos', email: 'victorsa234@gmail.com', cargo: 'Perito'},
+    { nome: 'Caio Lira', email: 'caioli234@gmail.com', cargo: 'Perito'}
+];
   return (
     <div className="form-container">
       <input
@@ -37,7 +45,19 @@ function AdmSignUpContainer({
         value={acesso}
         onChange={(e) => setAcesso(e.target.value)}
       />
+      <tbody>
+                    {users.map((user) => (
+                        <tr key = {user.nome}>
+                            <td>{user.nome}</td>
+                            <td>{user.email}</td>
+                            <td>{user.cargo}</td>
 
+                            <td>
+                                <button className="excluir">Excluir</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
       <button type="submit" onClick={handleButtonClick}>Cadastrar</button>
     </div>
   );

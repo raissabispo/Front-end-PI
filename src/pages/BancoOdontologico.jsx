@@ -22,7 +22,7 @@ function BancoOdontologico() {
   return (
     <div className="dashboard-container">
       <Sidebar /> {/* Adicionando o sidebar */}
-      <div className="banco-container">
+      <div className="container">
         <SearchInput
           type="text"
           value={pesquisa}
