@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar"; 
-import "../adm/Cadastro.css"
+import "../styles/global.css"
 
 
 function RegisterPerito(){
@@ -42,7 +42,7 @@ function RegisterPerito(){
   };
 
   return(
-    <div className="dashboard-container">
+    <div className="container">
           <Sidebar /> {/* Adicionando o sidebar */}
       
        <h2>Cadastrar Novo Perito </h2>
@@ -72,20 +72,26 @@ function RegisterPerito(){
 
           <div>
           <label>Cargo:</label>
-            <input
-              type="text"
-              value={cargo}
-              onChange={(e) => setCargo(e.target.value)}
-              required
-              />
+            <select value={cargo}
+               onChange={(e) => 
+              setCargo(e.target.value)} required
+              className="input">
 
-              <label>Tipo de acesso </label>
-              <input
-              type="text"
-              value={acesso}
-              onChange={(e) => setCargo(e.target.value)}
-              required
-              />
+                <option value="">Selecione</option>
+                <option value="Perito">Perito</option>
+                <option value="Assistente">Assistente</option>
+            </select>
+
+            <label>Tipo de acesso:</label>
+            <select value={acesso}
+               onChange={(e) => 
+              setAcesso(e.target.value)} required
+              className="input">
+
+                <option value="">Selecione</option>
+                <option value="Perito">Perito</option>
+                <option value="Assistente">Assistente</option>
+            </select>
           </div> 
 
           <button type="submit">Cadastrar</button>
