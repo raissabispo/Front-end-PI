@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import DetalhamentoCaso from "./cardDetalhamento/cardDetalhamento";
+import DetalhamentoCaso from "./pages/DetalhamentoCaso";
 import GerarNovoCaso from "./pages/GerarNovoCaso";
 import GerarLaudo from "./pages/GerarLaudo";
 import BancoOdontologico from "./pages/BancoOdontologico";
-import Admin from "./pages/Admin";
+import Admin from "./pages/adm/Admin";
 import Cadastrar from "./pages/Cadastrar";
 
 function App() {

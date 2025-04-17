@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar"; 
+import Sidebar from "../components/sidebar/Sidebar";
 import jsPDF from "jspdf";
-import "../styles/global.css";
+import "./../styles/global.css";
+import SearchInput from "../components/searchInput/SearchInput";
+import ButtonOnClick from "../components/buttons/ButtonOnClick";
 
-  const GerarLaudo = () => {
-    const [dados, setDados] = useState({
-    nomeCaso:"",
+const GerarLaudo = () => {
+  const [dados, setDados] = useState({
+    nomeCaso: "",
     data: "",
-    hora:"",
-    perito:"",
+    hora: "",
+    perito: "",
     nomePaciente: "",
     nascimento: "",
     sexo: "",
@@ -23,16 +25,16 @@ import "../styles/global.css";
   });
 
   const handleChange = (e) => {
-    const {name, value, type, checked} = e.target;
-    if (type === "checkbox" ){
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
       setDados((prev) => ({
         ...prev,
         metodos: checked
-        ?[...prev.metodos, value]
-        : prev.metodos.filter((m) => m !== value),
+          ? [...prev.metodos, value]
+          : prev.metodos.filter((m) => m !== value),
       }));
-    } else{
-      setDados((prev) => ({...prev, [name]: value}));
+    } else {
+      setDados((prev) => ({ ...prev, [name]: value }));
     }
   };
 
@@ -45,7 +47,7 @@ import "../styles/global.css";
     doc.setFontSize(12);
     doc.text(`Nome do Caso: ${dados.nomeCaso}`, 20, 30);
     doc.text(`Data: ${dados.data}`, 20, 40);
-    doc.text(`Hora:${dados.hora}` , 20, 50 );
+    doc.text(`Hora:${dados.hora}`, 20, 50);
     doc.text(`Perito Responsável: ${dados.perito}`, 20, 70);
 
     doc.text("IDENTIFICAÇÃO DO EXAMINADO", 20, 80);
@@ -60,7 +62,6 @@ import "../styles/global.css";
     doc.text(`Motivo da Perícia: ${dados.motivo}`, 20, 170);
     doc.text(`Métodos Utilizados: ${dados.metodos.join(",")}`, 20, 180);
 
-    
     doc.text("ACHADOS PERICIAIS", 20, 230);
     doc.text(`DESCRIÇÃO:${dados.achados}`, 20, 240);
 
@@ -78,11 +79,10 @@ import "../styles/global.css";
   return (
     <div className="dashboard-container">
       <Sidebar /> {/* Adicionando o Sidebar */}
+      <div className="container">
+        <h2>Gerar Laudo</h2>
 
-    <div className="container">
-      <h2>Gerar Laudo</h2>
-
-      <label>Caso</label>
+        <label>Caso</label>
           <select
             name="numeroCaso"
             value={dados.numeroCaso}
@@ -94,79 +94,73 @@ import "../styles/global.css";
             <option value="Caso 002">Caso 002</option>
             <option value="Caso 003">Caso 003</option>
           </select>
-      
 
-    <label>Nome do Caso :</label>
-    <input type="text" name="nomeCaso" onChange={handleChange}></input>
+        <label>Número do Caso :</label>
+        <SearchInput type="text" name="numeroCaso" onChange={handleChange} />
 
-    <label>Data :</label>
-    <input type="date" name="data" onChange={handleChange}></input>
+        <label>Data :</label>
+        <SearchInput type="data" name="data" onChange={handleChange} />
 
-    <label>Hora:</label>
-    <input type="time" name="time" onChange={handleChange} />
+        <label>Hora:</label>
+        <SearchInput type="time" name="time" onChange={handleChange} />
 
-    <label>Perito Responsável :</label>
-    <input type="text" name="perito" onChange={handleChange}></input>
+        <label>Perito Responsável :</label>
+        <SearchInput type="text" name="perito" onChange={handleChange} />
 
-    <h3>Identificação do Examinado</h3>
-    <label>Nome do Paciente :</label>
-    <input type="text" name="numeroPacirnte" onChange={handleChange}></input>
+        <h3>Identificação do Examinado</h3>
+        <label>Nome do Paciente :</label>
+        <SearchInput type="text" name="numeroPaciente" onChange={handleChange}
+        />
 
-    <label>Data de Nascimento</label>
-    <input type="date" name="nascimento" onChange={handleChange}></input>
+        <label>Data de Nascimento</label>
+        <SearchInput type="date" name="nascimento" onChange={handleChange} />
 
-    <label>Sexo:</label>
-    <select name="sexo" onChange={handleChange}>
-      <option value="">Selecione</option>
-      <option value="Masculino">Masculino</option>
-      <option value="Feminino">Feminino</option>
-    </select>
+        <label>Sexo:</label>
+        <select name="sexo" onChange={handleChange}>
+          <option value="">Selecione</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
+        </select>
 
-    <label>Documento:</label>
-    <input type="text" name="documento" onChange={handleChange}></input>
+        <label>Documento:</label>
+        <SearchInput type="text" name="documento" onChange={handleChange} />
 
-    <label>Filiação</label>
-    <input type="text" name="feliacao" onChange={handleChange}></input>
+        <label>Filiação:</label>
+        <SearchInput type="text" name="filiacao" onChange={handleChange} />
 
-    <h3>Informações do Exame</h3>
-    <label>Local:</label>
-    <input type="text" name="localExame" onChange={handleChange}></input>
+        <h3>Informações do Exame</h3>
+        <label>Local:</label>
+        <SearchInput type="text" name="localExame" onChange={handleChange} />
 
-    <label>Motivos da Perícia:</label>
-    <input type="text" name="motivo" onChange={handleChange}></input>
+        <label>Motivos da Perícia:</label>
+        <SearchInput type="text" name="motivo" onChange={handleChange} />
 
-    <h4> Métodos Utilizados:</h4>
-    <label>
-      <input type="checkbox"
-      name="metodos"
-      value="Radiografia"
-      onChange={handleChange} />
-    Radiografia
-    </label>
-    <label>
-      <input type="checkbox"
-      name="metodos"
-      value="Fotografia"
-      onChange={handleChange} />
-      Fotografia
-    </label>
-    <h3>Achados Periciais</h3>
-    <textarea name="achados" onChange={handleChange}></textarea>
+        <h4> Métodos Utilizados:</h4>
+        <label>
+          <SearchInput type="checkbox" name="metodos" value="Radiografia" onChange={handleChange} /> 
+          Radiografia
+        </label>
+        <label>
+        <SearchInput type="checkbox" name="metodos" value="Fotografia" onChange={handleChange} /> 
+          Fotografia
+        </label>
+        <h3>Achados Periciais</h3>
+        <textarea name="achados" onChange={handleChange}></textarea>
 
-    <h3>Conclução</h3>
-    <label>Diagnóstico Parcial</label>
-    <textarea name="diagnostico" onChange={handleChange}></textarea>
+        <h3>Conclução</h3>
+        <label>Diagnóstico Parcial</label>
+        <textarea name="diagnostico" onChange={handleChange}></textarea>
 
-    <label>Grau de Certeza</label>
-    <select name="grauCerteza"onChange={handleChange}>
-      <option value="">Selecione</option>
-      <option value="Conclusivo">Conclusivo</option>
-      <option value="Necessita de exames">Necessita de exames</option>
-    </select>
-        <button onClick={gerarPDF}>Gerar PDF</button>
+        <label>Grau de Certeza</label>
+        <select name="grauCerteza" onChange={handleChange}>
+          <option value="">Selecione</option>
+          <option value="Conclusivo">Conclusivo</option>
+          <option value="Necessita de exames">Necessita de exames</option>
+        </select>
+        <ButtonOnClick text="Gerar PDF" onClick={gerarPDF} />
       </div>
     </div>
   );
-}
+};
 
 export default GerarLaudo;

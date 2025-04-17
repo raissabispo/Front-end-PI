@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar"; 
-import "../styles/global.css"
+import Sidebar from "../components/sidebar/Sidebar";
+import "./../styles/global.css";
+import ButtonOnClick from "../components/buttons/ButtonOnClick";
+import SearchInput from "../components/searchInput/SearchInput";
 
 function BancoOdontologico() {
   const [pesquisa, setPesquisa] = useState("");
@@ -18,18 +20,16 @@ function BancoOdontologico() {
   };
 
   return (
-
-    <div className="container">
-          <Sidebar /> {/* Adicionando o sidebar */}
-
-    <div className="banco-container">
-      <input
-        type="text"
-        value={pesquisa}
-        onChange={(e) => setPesquisa(e.target.value)}
-        placeholder="Pesquisar casos"
-      />
-      <select
+    <div className="dashboard-container">
+      <Sidebar /> {/* Adicionando o sidebar */}
+      <div className="container">
+        <SearchInput
+          type="text"
+          value={pesquisa}
+          onChange={(e) => setPesquisa(e.target.value)}
+          placeholder="Pesquisar casos"
+        />
+        <select
       value={categoriaAtiva}
       onChange={(e) => setCategoriaAtiva(e.target.value)}>
         {categorias.map((cat)=> (
@@ -38,17 +38,17 @@ function BancoOdontologico() {
           </option>
         ))}
       </select>
-      <button onClick={handleSearch}>Pesquisar</button>
-      <div className="resultados">
-        {resultados.map((caso, index) => (
-          <div key={index} className="card">
-            <h3>{caso.nome}</h3>
-            <p>{caso.responsavel}</p>
-          </div>
-        ))}
+        <ButtonOnClick text="Pesquisar" onClick={handleSearch} />
+        <div className="resultados">
+          {resultados.map((caso, index) => (
+            <div key={index}>
+              <h3>{caso.nome}</h3>
+              <p>{caso.responsavel}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
   );
 }
 
