@@ -1,33 +1,99 @@
+
+
+/* Estilos globais */
+
 body{
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f8;
 }
 
+/* Estilo do container principal */
 .container{
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 40px;
     margin-left: 200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
 }
-label {
+
+.container label {
     display: flex;
     flex-direction: column;
-    margin-bottom: 3px;
     font-size: 16px;
+}
 
-  }
+/* Seção do Formulario */
+  .section-container {
+    background: #fcfafad5;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    box-shadow: 0 1px 5px rgba(107, 107, 107, 0.3);
+}
+
+/* Agrupamentos de campos */
   
-  input {
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* Linha  do formulário Horizontal*/
+.row {
+    display: flex;
+    gap: 16px;
+    flex-wrap:nowrap;
+    margin-bottom: 10px;
+}
+  
+.row .form-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+
+  /*  Inputs e selects */
+  .container input, 
+  .container select{
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 5px;
+    border-radius: 5px;
     font-size: 14px;
-    width: 100%;
-    
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 80%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    border-color: #acacac; 
   }
-   button {
-    background-color: #4a6572;
+  textarea{
+    width: 80%;
+    display: flex;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  /* input select (Dropdown) */
+  .input {
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+    appearance: none;
+    -webkit-appearance: none; 
+    /* remove o estilo padrão do select */
+    -moz-appearance: none;
+  }
+
+  /* Botão geral  */
+  .btn {
+    background-color: rgba(35, 45, 102, 0.719);
     color: white;
     padding: 10px;
     width: 9rem;
@@ -38,30 +104,16 @@ label {
     font-size: 14px;
     display: flex;
   }
-  button:hover {
-    background-color: #9dc88d;
-    transition: background 0.5s ease;
-  }
-  
-  button:hover {
-    background-color: #9dc88d;
-    transition: background 0.5s ease;
-  }
-  /* input select */
-  .input {
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  /* botão excluir */
+   .delete-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
     font-size: 16px;
-    background-color: white;
-    appearance: none;
-    -webkit-appearance: none; 
-    /* remove o estilo padrão do select */
-    -moz-appearance: none;
+    
   }
-  /*  */
-  
+
+  /* Cards tela de inicio  */
   .card{
     background-color: rgba(190, 180, 180, 0.212);
     padding: 20px;
@@ -74,16 +126,15 @@ label {
 .card:hover {
     transform: scale(1.01);
   }
-h3{
-    color: #000000;
-    font-size: 20px;
-    margin: 0;
-}
+  
+/* Textos Padrão */
 p{
     color: #000000;
     font-size: 14px;
     margin: 4px 0;
 }
+
+/* Estilos de status */
 .status{
     padding: 6px 14px;
     border-radius: 20px;
@@ -104,6 +155,7 @@ p{
 .status-andamento{
     background-color: rgb(130, 130, 247);
 }
+/* Link para detalhes */
 .detalhes{
     text-decoration: none;
     display: flex;
@@ -112,6 +164,9 @@ p{
 }
 
 
+/* Responsividade */
+
+/* Tablets grandes (até) */
 @media (max-width: 1024px) {
     .container {
         margin-left: 14rem;
@@ -138,6 +193,10 @@ p{
      }
      button{
         font-size: 13px;
+     }
+    .row .form-group{
+        min-width: 40px;
+        justify-content: space-between;
      }
 }
 

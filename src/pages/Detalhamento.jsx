@@ -1,6 +1,6 @@
 import React from 'react';
-import DetalhamentoCaso from "../cardDetalhamento/cardDetalhamento";
-import Sidebar from "../components/Sidebar"; 
+import DetalhamentoCaso from "../components/cardDetalhamento/cardDetalhamento";
+import Sidebar from "../components/cardSidebar/Sidebar"; 
 
 function App() {
   return (

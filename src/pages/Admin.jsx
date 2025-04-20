@@ -1,6 +1,6 @@
 import React from 'react';
-import AdminTable from '../cardTabela/AdminTable';
-import Sidebar from "../components/Sidebar"; 
+import AdminTable from '../components/cardTabela/AdminTable';
+import Sidebar from "../components/cardSidebar/Sidebar"; 
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar"; 
+import Sidebar from "../components/cardSidebar/Sidebar"; 
 import "../styles/global.css"
 
 
@@ -45,32 +45,35 @@ function RegisterPerito(){
     <div className="container">
           <Sidebar /> {/* Adicionando o sidebar */}
       
-       <h2>Cadastrar Novo Perito </h2>
+       <h2>Cadastrar Novo Usuário </h2>
       {toast.show && <div className={`toast ${toast.type}`}>
         {toast.message}</div>}   
 
-        <form onSubmit={handleSubmit} className="login-form">
-
-         <div>
+      <div className="section-container">
+        <div className="form-group">
           <label>Nome:</label>
             <input
               type="text"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
               required
+              placeholder="Nome completo"
               />
           </div> 
-          <div>
+          <div className="form-group">
           <label>Email:</label>
             <input
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="seuemail@exemplo.com"
               required
+              
               />
           </div> 
 
-          <div>
+          <div className="row">
+            <div className="form-group">
           <label>Cargo:</label>
             <select value={cargo}
                onChange={(e) => 
@@ -81,7 +84,8 @@ function RegisterPerito(){
                 <option value="Perito">Perito</option>
                 <option value="Assistente">Assistente</option>
             </select>
-
+          </div>
+              <div className="form-group">
             <label>Tipo de acesso:</label>
             <select value={acesso}
                onChange={(e) => 
@@ -93,12 +97,12 @@ function RegisterPerito(){
                 <option value="Assistente">Assistente</option>
             </select>
           </div> 
+        </div>
 
-          <button type="submit">Cadastrar</button>
-
-          <button onClick={handleButtonClick}>Ver Lista de Peritos</button>
-        </form>       
+          <button className="btn" type="submit">Cadastrar</button>
+     
     </div>
+  </div>
   );
 }
 

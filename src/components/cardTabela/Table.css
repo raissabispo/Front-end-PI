@@ -1,0 +1,98 @@
+.container {
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+  }
+  
+  .admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px ;
+    border-color: transparent;
+  }
+  
+  .admin-table th{
+    background-color: #afafaf49;
+    color: #333;
+    text-align:left ;
+    padding: 14px 20px;
+    font-weight: 600;
+    border: none;
+  }
+  .admin-table td {
+    padding: 14px 20px;
+    border: 1px solid #fffdfdd5;
+    border-bottom: 1px solid #e3e6fe;
+    color: #555;
+    border-top: 1px  solid #e3e6fe;
+    vertical-align: middle;
+  }
+  .btn-novo{
+    width: 10rem;
+    display: flex;
+    padding: 10px 11px;
+    border: none;
+    background-color: #5369a0;
+    border-radius: 15px;
+    color: #fff;
+    margin-left: 80%;
+    cursor: pointer;
+    
+  }
+  .admin-table tr:hover td {
+    background-color: #dfdfdfc4;
+  }
+  
+  button.excluir {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 5rem;
+  }
+  
+  button.excluir:hover {
+    background-color: #851004;
+  }
+  @media (max-width: 768px) {
+    .admin-table{
+      max-width: 100%;
+    }
+    .admin-table thead{
+      display: none;
+    }
+    .admin-table tr{
+      display: block;
+      margin-bottom: 15px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .admin-table td {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border: none;
+      border-bottom: 1px solid #eee;
+      box-shadow: 1px solid #555;
+      font-size: 14px;
+    }
+  
+    .admin-table td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      flex: 1;
+      color: #333;
+    }
+    .admin-table tr:hover td {
+      background-color: transparent;
+    }
+    .btn-novo{
+      margin-left: 0%;
+    }
+    
+  }

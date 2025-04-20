@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar"; 
+import Sidebar from "../components/cardSidebar/Sidebar"; 
 import "../styles/global.css"
 
 function BancoOdontologico() {
@@ -14,6 +14,8 @@ function BancoOdontologico() {
     setResultados([
       { nome: "Caso 1", responsavel: "Dr. Silva" },
       { nome: "Caso 2", responsavel: "Dr. Souza" },
+      { nome: "Caso 3", responsavel: "Dr. Silva" },
+      { nome: "Caso 4", responsavel: "Dr. Souza" }
     ]);
   };
 
@@ -38,7 +40,7 @@ function BancoOdontologico() {
           </option>
         ))}
       </select>
-      <button onClick={handleSearch}>Pesquisar</button>
+      <button className="btn" onClick={handleSearch}>Pesquisar</button>
       <div className="resultados">
         {resultados.map((caso, index) => (
           <div key={index} className="card">

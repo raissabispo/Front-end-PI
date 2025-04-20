@@ -1,5 +1,7 @@
 import React from "react";
-import "./Table.css"
+import "../cardTabela/Table.css"
+import { Link, Navigate, useNavigate } from "react-router-dom";
+
 
 const AdminTable = () =>{
     const users =[
@@ -11,9 +13,16 @@ const AdminTable = () =>{
         { nome: 'Caio Lira', email: 'caioli234@gmail.com', cargo: 'Perito'}
     ];
 
+    const Navigate = useNavigate();
+
+    
+    const handleClick = () => {
+        Navigate('/cadastrar');
+      };
     return(
         <div className="container">
             <h2>Lista de Usuários</h2>
+            <button className="btn-novo" onClick={handleClick}> <i class="fa-solid fa-user-plus"></i>Adicionar novo usuário </button>
             <table className="admin-table">
                 <thead>
                     <tr>
@@ -27,9 +36,9 @@ const AdminTable = () =>{
                 <tbody>
                     {users.map((user) => (
                         <tr key = {user.nome}>
-                            <td>{user.nome}</td>
-                            <td>{user.email}</td>
-                            <td>{user.cargo}</td>
+                            <td data-label="nome">{user.nome}</td>
+                            <td data-label="email">{user.email}</td>
+                            <td data-label="cargo">{user.cargo}</td>
 
                             <td>
                                 <button className="excluir">Excluir</button>

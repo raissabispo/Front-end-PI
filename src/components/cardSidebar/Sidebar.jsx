@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../components/Sidebar.css"
-import icon from "../assets/icon.png"
+import "../cardSidebar/Sidebar.css"
+import icon from "../../assets/icon.png"
 
 function Sidebar() {
   const tipoUsuario = localStorage.getItem("tipoUsuario")?.toLowerCase();
@@ -21,6 +21,7 @@ function Sidebar() {
       {tipoUsuario === "admin" && (
         <>
         <li><Link to="/cadastrar"><i class="fa-regular fa-address-card"></i><span>Cadastrar</span></Link></li>
+        <li><Link to="/admin"><i class="fa-solid fa-table-list"></i><span>Lista</span></Link></li>
         </>
       )}
 
