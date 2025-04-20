@@ -221,7 +221,7 @@ import "../styles/global.css";
       />
     </div>
 </div>
-        <button className="btn-pdf" onClick={gerarPDF}>Gerar PDF</button>
+        <button className="btn" onClick={gerarPDF}>Gerar PDF</button>
       </div>
     </div>
   );

@@ -166,7 +166,7 @@ function GerarNovoCaso() {
             </div>
           </div>
 
-          <button className="btn-caso" type="submit">Adicionar Novo Caso</button>
+          <button className="btn" type="submit">Adicionar Novo Caso</button>
         </form>
       </div>
     </div>
