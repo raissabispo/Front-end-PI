@@ -12,7 +12,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
    
-    if(tipoUsuario.toLocaleLowerCase() === "admin" || tipoUsuario.toLocaleLowerCase() ==="assistente"){
+    if(tipoUsuario.toLocaleLowerCase() === "admin" || tipoUsuario.toLocaleLowerCase() ==="assistente" || tipoUsuario.toLocaleLowerCase() ==="perito"){
       localStorage.setItem("tipoUsuario", tipoUsuario.toLocaleLowerCase());
       navigate("/dashboard")
     } else{
