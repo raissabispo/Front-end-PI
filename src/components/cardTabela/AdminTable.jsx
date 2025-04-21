@@ -20,33 +20,25 @@ const AdminTable = () =>{
         Navigate('/cadastrar');
       };
     return(
-        <div className="container">
+        <div className = "card-user">
             <h2>Lista de Usuários</h2>
-            <button className="btn-novo" onClick={handleClick}> <i class="fa-solid fa-user-plus"></i>Adicionar novo usuário </button>
-            <table className="admin-table">
-                <thead>
-                    <tr>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Cargo</th>
-                    <th>Ações</th>
-                    </tr>
-                </thead>
+            <button className="btn-novo" onClick={handleClick}>
+            <i class="fa-solid fa-user-plus"></i>Adicionar novo usuário
+            </button>
 
-                <tbody>
-                    {users.map((user) => (
-                        <tr key = {user.nome}>
-                            <td data-label="nome">{user.nome}</td>
-                            <td data-label="email">{user.email}</td>
-                            <td data-label="cargo">{user.cargo}</td>
-
-                            <td>
-                                <button className="excluir">Excluir</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="card-info">
+                {users.map((user,index) => (
+                    <div key={index} className="user-card">
+                        <h3>{user.nome}</h3>
+                        <p><i class="fa-solid fa-user"></i> {user.email}</p>
+                        <p><i class="fa-solid fa-briefcase"></i> {user.cargo}</p>
+                        <button class="excluir">
+                        <i class="fa-solid fa-trash"></i>
+                        </button>
+                        <Link to={`/dashboard`} className="ver-casos">Ver casos</Link>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

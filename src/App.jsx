@@ -20,12 +20,13 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/detalhamento/:id" element={<DetalhamentoCaso />} />
             <Route path="/gerar-novo-caso" element={<GerarNovoCaso />} />
-            <Route path="/gerar-laudo/:id" element={<GerarLaudo />} />
+            <Route path="/gerar-laudo" element={<GerarLaudo />} />
             <Route path="/banco-odontologico" element={<BancoOdontologico />} />
             <Route path = "/admin" element={<Admin/>} />
             <Route path = "/cadastrar" element={<Cadastrar/>} />
 
           </Routes>
+          
         </div>
       </div>
     </Router>

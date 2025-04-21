@@ -7,6 +7,7 @@ import ConfirmModal from '../components/cardModal/ConfirmModal';
 
 function Dashboard() {
   const navigate = useNavigate();
+  const tipoUsuario = localStorage.getItem("tipoUsuario")?.toLowerCase();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [caseToDeleteId, setCaseToDeleteId] = useState(null);
   const [casos] = useState([
@@ -15,6 +16,7 @@ function Dashboard() {
       id: 1,
       titulo: "Identificação de vítima",
       data: "02/05/2023",
+      localizacao: "Rua 1",
       descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       status: "Concluído",
     },
@@ -22,6 +24,7 @@ function Dashboard() {
       id: 2,
       titulo: "Lesão Odontológica",
       data: "02/05/2023",
+      localizacao: "Rua 2",
       descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       status: "Fechado",
     },
@@ -29,6 +32,7 @@ function Dashboard() {
       id: 3,
       titulo: "Análise de Mordida",
       data: "02/05/2023",
+      localizacao: "Rua 3",
       descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       status: "Em andamento",
     },
@@ -36,11 +40,13 @@ function Dashboard() {
       id: 4,
       titulo: "Identificação de vítima",
       data: "02/05/2023",
+      localizacao: "Rua 4",
       descricao: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       status: "Concluído",
     },
   ]);
 
+  //Lógica do status, porém ja vem dos dados 
   const getStatusClass = (status) => {
     switch (status) {
       case "Concluído":
@@ -82,7 +88,9 @@ function Dashboard() {
             <h2> Casos em andamento </h2>
             <p className="subtitulo"> Casos</p>
           </div>
-          <button className="btn" onClick={handleClickNovoCaso}>criar novo caso </button>
+          {tipoUsuario !== "assistente" && (
+            <button className="btn" onClick={handleClickNovoCaso}>criar novo caso </button>
+          )}
         </div>
 
         <div className="cards-container">
@@ -90,7 +98,8 @@ function Dashboard() {
             <div key={caso.id} className="card">
               <h3>{caso.titulo}</h3>
               <p className="data">{caso.data}</p>
-              <p className="descricao">{caso.descricao}</p>
+              <strong><p className="descricao">{caso.descricao}</p></strong>
+              <p className="localizacao">{caso.localizacao}</p>
               <span className={`status ${getStatusClass(caso.status)}`}>
                 {caso.status}
               </span>
@@ -98,9 +107,11 @@ function Dashboard() {
                 <Link to={`/detalhamento/${caso.id}`} className="detalhes">
                   Ver detalhes
                 </Link>
-                <button onClick={() => openDeleteModal(caso.id)} className="delete-button">
+                {tipoUsuario !== "assistente" &&(
+                    <button onClick={() => openDeleteModal(caso.id)} className="delete-button">
                     <i className="fa-solid fa-trash"></i>
                 </button>
+                )}
               </div>
             </div>
           ))}
