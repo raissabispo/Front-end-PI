@@ -1,0 +1,79 @@
+.card-user {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  margin-left: 250px;
+}
+.card-user h2{
+  margin-bottom: 20px;
+}
+
+.card-info{
+  display: grid;
+  gap:20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.user-card h3{
+  margin-top: 0;
+  color: #5369a0;
+}
+.user-card{
+  background-color: #f7f9fc;
+  border:1px solid #e1e1e1;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.ver-casos{
+  text-decoration: none;
+  color: #0231a7;
+  font-weight: 600;
+}
+.user-card p{
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  gap:6px;
+}
+.btn-novo{
+  width: 10rem;
+  display: flex;
+  padding: 10px 11px;
+  border: none;
+  margin-bottom: 10px;
+  background-color: #5369a0;
+  border-radius: 15px;
+  color: #fff;
+  margin-left: 80%;
+  cursor: pointer;
+  gap: 10px;
+  
+}
+button.excluir {
+  background-color: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 2rem;
+  margin-left: 90%;
+}
+
+button.excluir:hover {
+  background-color: #f81d059c;
+}
+@media (max-width: 768px) {
+  .card-user{
+    margin-left: 60px;
+    padding: 16px;
+  }
+  .btn-novo{
+    margin-left: 0;
+  }
+}
+@media (max-width: 468px) {
+  .card-user{
+    margin-left: 60px;
+    padding: 10px;
+
+  }
+}

@@ -16,20 +16,24 @@ function BancoOdontologico() {
     setResultados([
       { nome: "Caso 1", responsavel: "Dr. Silva" },
       { nome: "Caso 2", responsavel: "Dr. Souza" },
+      { nome: "Caso 3", responsavel: "Dr. Silva" },
+      { nome: "Caso 4", responsavel: "Dr. Souza" }
     ]);
   };
 
   return (
-    <div className="dashboard-container">
-      <Sidebar /> {/* Adicionando o sidebar */}
-      <div className="container">
-        <SearchInput
-          type="text"
-          value={pesquisa}
-          onChange={(e) => setPesquisa(e.target.value)}
-          placeholder="Pesquisar casos"
-        />
-        <select
+
+    <div className="container">
+          <Sidebar /> {/* Adicionando o sidebar */}
+
+    <div className="banco-container">
+      <SearchInput
+        type="text"
+        value={pesquisa}
+        onChange={(e) => setPesquisa(e.target.value)}
+        placeholder="Pesquisar casos"
+      />
+      <select
       value={categoriaAtiva}
       onChange={(e) => setCategoriaAtiva(e.target.value)}>
         {categorias.map((cat)=> (
@@ -38,17 +42,17 @@ function BancoOdontologico() {
           </option>
         ))}
       </select>
-        <ButtonOnClick text="Pesquisar" onClick={handleSearch} />
-        <div className="resultados">
-          {resultados.map((caso, index) => (
-            <div key={index}>
-              <h3>{caso.nome}</h3>
-              <p>{caso.responsavel}</p>
-            </div>
-          ))}
-        </div>
+      <ButtonOnClick text="Pesquisar" onClick={handleSearch} />
+      <div className="resultados">
+        {resultados.map((caso, index) => (
+          <div key={index} className="card">
+            <h3>{caso.nome}</h3>
+            <p>{caso.responsavel}</p>
+          </div>
+        ))}
       </div>
     </div>
+  </div>
   );
 }
 

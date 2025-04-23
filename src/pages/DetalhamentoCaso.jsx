@@ -1,28 +1,14 @@
-import React from "react";
-import Sidebar from "../components/sidebar/Sidebar";
-import "./../styles/global.css";
-import Button from "../components/buttons/Button";
-import CaseDetails from "../components/caseDetails/CaseDetails";
-import CaseDetailsCard from "../components/caseDetailsCard/CaseDetailsCard";
+import React from 'react';
+import DetalhamentoCaso from "../components/caseDetailsCard/CaseDetailsCard";
+import Sidebar from "../components/sidebar/Sidebar"; 
 
-function DetalhamentoCaso() {
-  const caso = {
-    nome: "Caso 1",
-    responsavel: "Dr. Silva",
-    status: "Em andamento",
-    localizacao: "Rua X, 123",
-    descricao: "Descrição detalhada do caso...",
-    data: "Dia do ocorrido ",
-    informacao: "Informações adicionas",
-    imagem: "imagem da evidencia",
-  };
-
+function App() {
   return (
-    <div className="dashboard-container">
+    <div>
+      < DetalhamentoCaso/>
       <Sidebar /> {/* Adicionando o sidebar */}
-      <CaseDetailsCard caso={caso}/>
     </div>
   );
 }
 
-export default DetalhamentoCaso;
+export default App;

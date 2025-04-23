@@ -13,22 +13,16 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!tipoUsuario || !senha) {
-      alert("Selecione um tipo");
-      return;
+   
+    if(tipoUsuario.toLocaleLowerCase() === "admin" || tipoUsuario.toLocaleLowerCase() ==="assistente" || tipoUsuario.toLocaleLowerCase() ==="perito"){
+      localStorage.setItem("tipoUsuario", tipoUsuario.toLocaleLowerCase());
+      navigate("/dashboard")
+    } else{
+      alert("Tipo de usuário inválido! Use 'perito', 'admin' ou 'assistente'.")
     }
-
-    localStorage.setItem("tipoUsuario", tipoUsuario);
 
     //Rotas para acesso de cada cargo
-
-    if(tipoUsuario === "admin"){
-      navigate("/admin");
-    } else if (tipoUsuario === "perito"){
-      navigate("/dashboard")
-    }
   };
-
   return (
     <div className="login-container">
       {/* Ícone ao lado do formulário */}

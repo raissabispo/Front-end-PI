@@ -6,42 +6,175 @@ import SearchInput from "../components/searchInput/SearchInput";
 
 function GerarNovoCaso() {
   const [responsavel, setResponsavel] = useState("");
-  const [nomedocaso, setnomedoCaso] = useState("");
+  const [nomeDoCaso, setNomeDoCaso] = useState("");
   const [data, setData] = useState("");
+  const [cor, setCor] = useState("");
   const [hora, setHora] = useState("");
   const [local, setLocal] = useState("");
-  const [descricao, setdescricao] = useState("");
-  const [upload, setupload] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [upload, setUpload] = useState("");
+  const [sexoVitima, setSexoVitima] = useState("");
+  const [causaMorte, setCausaMorte] = useState("");
+  const [identificada, setIdentificada] = useState("");
   const [informacoes, setInformacoes] = useState("");
 
-  const handleSubmit = (e) =>{
-    e.preventDefault(); //evita o carregamento da página
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Evita o carregamento da página
   };
-  
+
   return (
     <div className="dashboard-container">
-      <Sidebar/>
+      <Sidebar />
 
       <div className="container">
-        <h2>Adicionar Novo Caso </h2>
+        <h2>Adicionar Novo Caso</h2>
 
-       <form onSubmit={handleSubmit}>
-        <SearchInput type="text" name="numeroCaso" label="Numéro do caso" />
-        <SearchInput type="text" label="Responsavel" value={responsavel} onChange={(e) => setResponsavel(e.target.value)} />
-        <SearchInput type="text" label="Nome do Caso" value={nomedocaso} onChange={(e) => setnomedoCaso(e.target.value)} />
-        <SearchInput type="date" label="Data" value={data} onChange={(e) => setData(e.target.value)}/>
-        <SearchInput type="time" label="Hora" value={hora} onChange={(e) => setHora(e.target.value)} />
-        <SearchInput type="text" label="Local" value={local} onChange={(e) => setLocal(e.target.value)} />
-        <SearchInput type="text" label="Descrição" value={descricao} onChange={(e) => setdescricao(e.target.value)} />
-        <SearchInput type="file" label="Evidências" value={upload} accept="image/*, .pdf, .doc, .docx" onChange={(e) => setupload(e.target.files[0])} capture="environment"  />
-        <SearchInput type="text" label="Informações" value={informacoes} onChange={(e) => setInformacoes(e.target.value)} />       
-         <ButtonSubmit text="Adicionar Novo Caso"/>
-         </form>
+        <form onSubmit={handleSubmit}>
+          
+          {/* Seção de Identificação */}
+          <div className="section-container">
+            <h3>Identificação</h3>
+
+            <label>Identificada</label>
+            <select
+              value={identificada}
+              onChange={(e) => setIdentificada(e.target.value)}
+              className="input"
+            >
+              <option value="">Selecione</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+
+            <div className="full">
+              <label>Nome do Caso:</label>
+              <SearchInput
+                type="text"
+                value={nomeDoCaso}
+                onChange={(e) => setNomeDoCaso(e.target.value)}
+              />
+            </div>
+
+            <div className="full">
+              <label>Responsável:</label>
+              <SearchInput
+                type="text"
+                value={responsavel}
+                onChange={(e) => setResponsavel(e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Seção de Informações Básicas */}
+          <div className="section-container">
+            <div className="row">
+              <div className="form-group">
+                <label>Data:</label>
+                <SearchInput
+                  type="date"
+                  value={data}
+                  onChange={(e) => setData(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Cor da Pele:</label>
+                <select
+                  value={cor}
+                  onChange={(e) => setCor(e.target.value)}
+                  className="input"
+                >
+                  <option value="">Selecione</option>
+                  <option value="Branca">Branca</option>
+                  <option value="Parda">Parda</option>
+                  <option value="Negra">Negra</option>
+                  <option value="Amarela">Amarela</option>
+                  <option value="Indígena">Indígena</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Hora:</label>
+                <SearchInput
+                  type="time"
+                  value={hora}
+                  onChange={(e) => setHora(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Sexo da Vítima:</label>
+              <select
+                value={sexoVitima}
+                onChange={(e) => setSexoVitima(e.target.value)}
+                className="input"
+              >
+                <option value="">Selecione</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Seção de Localização e Evidências */}
+          <div className="section-container">
+            <div className="form-group">
+              <label>Local:</label>
+              <SearchInput
+                type="text"
+                value={local}
+                onChange={(e) => setLocal(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Descrição:</label>
+              <SearchInput
+                type="text"
+                value={descricao}
+                onChange={(e) => setDescricao(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Evidências:</label>
+              <SearchInput
+                type="file"
+                accept="image/*, .pdf, .doc, .docx"
+                onChange={(e) => setUpload(e.target.files[0])}
+                multiple
+              />
+            </div>
+
+            <div className="row">
+              <div className="form-group">
+                <label>Causa da Morte:</label>
+                <SearchInput
+                  type="text"
+                  value={causaMorte}
+                  onChange={(e) => setCausaMorte(e.target.value)}
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Informações:</label>
+                <SearchInput
+                  type="text"
+                  value={informacoes}
+                  onChange={(e) => setInformacoes(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+
+          <ButtonSubmit text="Adicionar Novo Caso"/>
+        </form>
       </div>
     </div>
   );
-
 }
 
 export default GerarNovoCaso;
+
  
