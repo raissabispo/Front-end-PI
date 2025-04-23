@@ -8,4 +8,5 @@ export default defineConfig({
     server: {
       port: 3000, // ou qualquer outra porta que você preferir
     },
+    base: '/Front-end-PI/'
 })
