@@ -3,7 +3,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 import "./../styles/global.css";
 import Button from "../components/buttons/Button";
 import CaseDetails from "../components/caseDetails/CaseDetails";
-import CaseDetailsCard from "../components/caseDetailsCard/caseDetailsCard";
+import CaseDetailsCard from "../components/caseDetailsCard/CaseDetailsCard";
 
 function DetalhamentoCaso() {
   const caso = {
