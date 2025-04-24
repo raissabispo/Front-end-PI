@@ -1,9 +1,9 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
 
 /* Estilos globais */
 
 body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Red Hat Text', sans-serif;
     background-color: #f4f6f8;
 }
 
@@ -113,29 +113,14 @@ body{
     
   }
 
-  /* Cards tela de inicio  */
-  .card{
-    background-color: rgba(226, 223, 223, 0.623);
-    padding: 20px;
-    margin-bottom: 25px;
-    margin: 10px 0px;
-    border-radius: 8px;
-    box-shadow: 0 7px 5px rgba(0, 0, 0, 0.1);
-    transition: transfrom 0.1s ease;
-}
-.card:hover {
-    transform: scale(1.01);
-  }
-  
 /* Textos Padrão */
 p{
     color: #000000;
     font-size: 14px;
-    margin: 4px 0;
 }
 
 /* Estilos de status */
-.status{
+/* .status{
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 12px;
@@ -154,7 +139,8 @@ p{
 }
 .status-andamento{
     background-color: rgb(130, 130, 247);
-}
+} */
+
 /* Link para detalhes */
 .detalhes{
     text-decoration: none;
