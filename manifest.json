@@ -1,20 +1,34 @@
 {
-    "name": "SIOP 2.0",
-    "short_name": "SIOP",
-    "description": "Sistema De Identficação Odonto-Pericial",
-    "theme_color": "#0a74da",
-    "background_color": "#ffffff",
-    "icons": [
-      {
-        "src": "icons/icon-192x192.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "icons/icon-512x512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  }
-  
+  "name": "SIOP",
+  "short_name": "SIOP",
+  "description": "Sistema De Identficação Odonto-Pericial",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color": "#0a74da",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/screen1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide" 
+    },
+    {
+      "src": "screenshots/screen2.png",
+      "sizes": "585x869",
+      "type": "image/png"
+    }
+  ]
+}
