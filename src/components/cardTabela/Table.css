@@ -9,7 +9,9 @@
 }
 
 .card-user h2 {
+  font-family: 'red hat text', sans-serif;
   margin-bottom: 20px;
+  color: #213158;
 }
 
 .card-info {
@@ -29,15 +31,21 @@
 }
 
 .user-card {
+  font-family: 'red hat text', sans-serif;
   display: flex;
   flex-direction: column;
   background-color: #f7f9fc;
   width: auto;
   height: auto;
-  border: 1px solid #e1e1e1;
+  border: 1px solid #adadad;
   border-radius: 10px;
   padding: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+.user-card:hover {
+  transform: scale(1.001);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .ver-casos {
@@ -72,18 +80,26 @@
 }
 
 .btn-novo {
+  font-family: 'red hat text', sans-serif;	
+  align-items: center;
+  justify-content: center;
   width: 10rem;
   display: flex;
   padding: 10px 11px;
   border: none;
   margin-bottom: 10px;
-  background-color: #5369a0;
+  background-color: #213158;
   border-radius: 15px;
   color: #fff;
   margin-left: 80%;
   cursor: pointer;
   gap: 10px;
+  transition: 0.3s ease;
 
+}
+
+.btn-novo:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .trash {
