@@ -2,19 +2,27 @@
 
 /* Estilos globais */
 
-body{
+.subtitulo {
+    font-family: 'Red Hat Text', sans-serif;
+    font-size: 18px;
+    color: #a6a6a6;
+    margin: 0px 5px;
+}
+
+body {
     font-family: 'Red Hat Text', sans-serif;
     background-color: #f4f6f8;
 }
 
 /* Estilo do container principal */
-.container{
+.container {
     display: flex;
     flex-direction: column;
     padding: 40px;
     margin-left: 200px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f1f1f1;
 }
 
 .container label {
@@ -24,16 +32,39 @@ body{
 }
 
 /* Seção do Formulario */
-  .section-container {
-    background: #fcfafad5;
+.section-container {
+    width: auto;
+    background: #fff;
     padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 16px;
-    box-shadow: 0 1px 5px rgba(107, 107, 107, 0.3);
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.login-form label {
+    margin: 0;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Agrupamentos de campos */
-  
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -45,19 +76,19 @@ body{
 .row {
     display: flex;
     gap: 16px;
-    flex-wrap:nowrap;
+    flex-wrap: nowrap;
     margin-bottom: 10px;
 }
-  
+
 .row .form-group {
     flex: 1;
     min-width: 150px;
 }
 
 
-  /*  Inputs e selects */
-  .container input, 
-  .container select{
+/*  Inputs e selects */
+.container input,
+.container select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -65,20 +96,40 @@ body{
     flex-direction: column;
     margin-bottom: 10px;
     width: 80%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    border-color: #acacac; 
-  }
-  textarea{
-    width: 80%;
-    display: flex;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
+    border-color: #acacac;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-  /* input select (Dropdown) */
-  .input {
+.container input:hover,
+.container select:hover {
+    border-color: #191970;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 80%;
+    box-sizing: border-box;
+    border-color: #acacac;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.textarea:hover {
+    border-color: #191970;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* input select (Dropdown) */
+.input {
     padding: 10px;
     width: 80%;
     border: 1px solid #ccc;
@@ -86,14 +137,17 @@ body{
     font-size: 16px;
     background-color: white;
     appearance: none;
-    -webkit-appearance: none; 
-    /* remove o estilo padrão do select */
+    -webkit-appearance: none;
     -moz-appearance: none;
-  }
+}
 
-  /* Botão geral  */
-  .btn {
-    background-color: #191970 ;
+/* Botão geral  */
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Red Hat Text', sans-serif;
+    background-color: #191970;
     color: white;
     padding: 10px;
     width: 9rem;
@@ -103,20 +157,29 @@ body{
     margin-top: 10px;
     font-size: 14px;
     display: flex;
-  }
-  /* botão excluir */
-   .delete-button {
+}
+
+/* botão excluir */
+.delete-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 16px;
-    
-  }
+
+}
 
 /* Textos Padrão */
-p{
+p {
+    margin: 0px;
     color: #000000;
-    font-size: 14px;
+    font-size: 18px;
+}
+
+h2 {
+    color: #000000;
+    font-size: 24px;
+    margin: 10px 5px;
+    font-weight: 600;
 }
 
 /* Estilos de status */
@@ -142,7 +205,7 @@ p{
 } */
 
 /* Link para detalhes */
-.detalhes{
+.detalhes {
     text-decoration: none;
     display: flex;
     color: #000000;
@@ -164,26 +227,31 @@ p{
         margin-left: 70px;
         padding: 10px;
     }
+
     input {
         width: 90%;
     }
 
     .card {
-        margin: 15px; 
+        margin: 15px;
     }
-    .detalhes{
+
+    .detalhes {
         margin-left: 70%;
     }
-    .input{
+
+    .input {
         margin-left: 0%;
-     }
-     button{
+    }
+
+    button {
         font-size: 13px;
-     }
-    .row .form-group{
+    }
+
+    .row .form-group {
         min-width: 40px;
         justify-content: space-between;
-     }
+    }
 }
 
 @media (max-width: 480px) {
@@ -193,20 +261,21 @@ p{
     }
 
     .card {
-        width: 80%; 
+        width: 80%;
         margin: 10px 0;
         margin-bottom: 25px;
         margin-left: 10px;
     }
 
     h2 {
-        font-size: 18px; 
+        font-size: 18px;
     }
 
     p {
         font-size: 17px;
     }
-    input{
+
+    input {
         width: 80%;
     }
 

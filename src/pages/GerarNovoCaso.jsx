@@ -1,174 +1,124 @@
 import React, { useState } from "react";
-import Sidebar from "../components/sidebar/Sidebar"; 
+import { useParams } from "react-router-dom"; // Import useParams
+import Sidebar from "../components/sidebar/Sidebar";
 import "./../styles/global.css";
 import ButtonSubmit from "../components/buttons/ButtonSubmit";
 import SearchInput from "../components/searchInput/SearchInput";
+import apiRoutes from "../api/routes";
 
 function GerarNovoCaso() {
-  const [responsavel, setResponsavel] = useState("");
-  const [nomeDoCaso, setNomeDoCaso] = useState("");
-  const [data, setData] = useState("");
-  const [cor, setCor] = useState("");
-  const [hora, setHora] = useState("");
-  const [local, setLocal] = useState("");
+  const { id } = useParams(); // Extract id from URL
+  const [titulo, setTitulo] = useState("");
   const [descricao, setDescricao] = useState("");
-  const [upload, setUpload] = useState("");
-  const [sexoVitima, setSexoVitima] = useState("");
-  const [causaMorte, setCausaMorte] = useState("");
-  const [identificada, setIdentificada] = useState("");
-  const [informacoes, setInformacoes] = useState("");
+  const [status, setStatus] = useState("Aberto");
+  const [dataAbertura, setDataAbertura] = useState("");
+  const [localizacao, setLocalizacao] = useState("");
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Evita o carregamento da página
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  const userId = userData?.id; // Usa optional chaining para evitar erros
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setSuccess(null);
+
+    try {
+      const caseData = {
+        titulo,
+        descricao,
+        status,
+        dataAbertura: dataAbertura ? new Date(dataAbertura).toISOString() : null,
+        dataFechamento: null,
+        localizacao,
+        responsavel: id, // destacar o ID do usuário responsável
+      };
+
+      const response = await apiRoutes.createCaseByIdUser(id, caseData);
+      setSuccess("Caso criado com sucesso!");
+      setTitulo("");
+      setDescricao("");
+      setStatus("Aberto");
+      setDataAbertura("");
+      setLocalizacao("");
+
+      console.log("Caso criado:", response);
+    } catch (err) {
+      setError("Erro ao criar o caso. Por favor, tente novamente.");
+    }
   };
 
   return (
     <div className="dashboard-container">
       <Sidebar />
-
       <div className="container">
         <h2>Adicionar Novo Caso</h2>
 
+        {error && <div className="error-message">{error}</div>}
+        {success && <div className="success-message">{success}</div>}
+
         <form onSubmit={handleSubmit}>
-          
-          {/* Seção de Identificação */}
           <div className="section-container">
-            <h3>Identificação</h3>
-
-            <label>Identificada</label>
-            <select
-              value={identificada}
-              onChange={(e) => setIdentificada(e.target.value)}
-              className="input"
-            >
-              <option value="">Selecione</option>
-              <option value="Sim">Sim</option>
-              <option value="Não">Não</option>
-            </select>
-
             <div className="full">
               <label>Nome do Caso:</label>
               <SearchInput
                 type="text"
-                value={nomeDoCaso}
-                onChange={(e) => setNomeDoCaso(e.target.value)}
+                value={titulo}
+                onChange={(e) => setTitulo(e.target.value)}
+                required
               />
             </div>
 
             <div className="full">
-              <label>Responsável:</label>
-              <SearchInput
-                type="text"
-                value={responsavel}
-                onChange={(e) => setResponsavel(e.target.value)}
-              />
-            </div>
-          </div>
-
-          {/* Seção de Informações Básicas */}
-          <div className="section-container">
-            <div className="row">
-              <div className="form-group">
-                <label>Data:</label>
-                <SearchInput
-                  type="date"
-                  value={data}
-                  onChange={(e) => setData(e.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Cor da Pele:</label>
-                <select
-                  value={cor}
-                  onChange={(e) => setCor(e.target.value)}
-                  className="input"
-                >
-                  <option value="">Selecione</option>
-                  <option value="Branca">Branca</option>
-                  <option value="Parda">Parda</option>
-                  <option value="Negra">Negra</option>
-                  <option value="Amarela">Amarela</option>
-                  <option value="Indígena">Indígena</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label>Hora:</label>
-                <SearchInput
-                  type="time"
-                  value={hora}
-                  onChange={(e) => setHora(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label>Sexo da Vítima:</label>
+              <label>Status:</label>
               <select
-                value={sexoVitima}
-                onChange={(e) => setSexoVitima(e.target.value)}
-                className="input"
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+                required
               >
-                <option value="">Selecione</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Feminino">Feminino</option>
+                <option value="Aberto">Aberto</option>
+                <option value="Em Andamento">Em Andamento</option>
+                <option value="Fechado">Fechado</option>
               </select>
             </div>
           </div>
 
-          {/* Seção de Localização e Evidências */}
           <div className="section-container">
             <div className="form-group">
-              <label>Local:</label>
+              <label>Data de Abertura:</label>
+              <SearchInput
+                type="datetime-local"
+                value={dataAbertura}
+                onChange={(e) => setDataAbertura(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="section-container">
+            <div className="form-group">
+              <label>Localização:</label>
               <SearchInput
                 type="text"
-                value={local}
-                onChange={(e) => setLocal(e.target.value)}
+                value={localizacao}
+                onChange={(e) => setLocalizacao(e.target.value)}
               />
             </div>
 
             <div className="form-group">
               <label>Descrição:</label>
-              <SearchInput
-                type="text"
+              <textarea
                 value={descricao}
                 onChange={(e) => setDescricao(e.target.value)}
+                rows="5"
+                className="form-textarea"
+                required
               />
-            </div>
-
-            <div className="form-group">
-              <label>Evidências:</label>
-              <SearchInput
-                type="file"
-                accept="image/*, .pdf, .doc, .docx"
-                onChange={(e) => setUpload(e.target.files[0])}
-                multiple
-              />
-            </div>
-
-            <div className="row">
-              <div className="form-group">
-                <label>Causa da Morte:</label>
-                <SearchInput
-                  type="text"
-                  value={causaMorte}
-                  onChange={(e) => setCausaMorte(e.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Informações:</label>
-                <SearchInput
-                  type="text"
-                  value={informacoes}
-                  onChange={(e) => setInformacoes(e.target.value)}
-                />
-              </div>
             </div>
           </div>
 
-          <ButtonSubmit text="Adicionar Novo Caso"/>
+          <ButtonSubmit text="Adicionar Novo Caso" />
         </form>
       </div>
     </div>
@@ -176,5 +126,3 @@ function GerarNovoCaso() {
 }
 
 export default GerarNovoCaso;
-
- 

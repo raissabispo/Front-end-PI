@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/sidebar/Sidebar";
 import "../styles/global.css"
-import { useEffect } from "react";
 import apiRoutes from "../api/routes"; // Importando as rotas da API
 
 
@@ -14,6 +13,12 @@ function RegisterPerito() {
   const [senha, setSenha] = useState("");
   const [role, setRole] = useState("");
   const [acesso, setAcesso] = useState("");
+
+  const navigate = useNavigate(); // Hook para redirecionar após o cadastro
+
+  const handleView = () => {
+    navigate('/admin');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,40 +53,11 @@ function RegisterPerito() {
     }
   };
 
-
-
-  const navigate = useNavigate();
-
   const showToast = (message, type) => {
     setToast({
       show: true, message, type
     });
     setTimeout(() => setToast({ show: false, message: "", type: "" }), 3000);
-  };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     //func para cadastra o perito({nome, email, role})
-
-  //     console.log("Perito cadastrado");
-
-  //     setNome("");
-  //     setEmail("");
-  //     setRole("");
-  //     setAcesso("");
-  //     showToast("Perito Cadastrado");
-  //   } catch (err) {
-  //     console.error("Erro ao cadastrar");
-  //     showToast("Erro ao cadastrar");
-  //   }
-  // };
-
-
-
-  const handleButtonClick = () => {
-    navigate("");
   };
 
   return (
@@ -137,10 +113,11 @@ function RegisterPerito() {
               <option value="">Selecione</option>
               <option value="perito">Perito</option>
               <option value="assistente">Assistente</option>
+              <option value="admin">Admin</option>
             </select>
           </div>
         </div>
-
+        <button className="btn" onClick={handleView} >Visualizar</button>
         <button className="btn" onClick={handleSubmit} type="submit">Cadastrar</button>
 
       </div>

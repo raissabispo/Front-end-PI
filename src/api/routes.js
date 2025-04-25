@@ -8,7 +8,7 @@ const config = {
     }
   };    
 
-export const apiRoutes = {
+export const apiRoutes = { // Essa constanta é uma função que retorna um objeto com métodos para fazer requisições HTTP para a API.
 
     //Cases
     getCases: async(data) => { 
@@ -56,6 +56,24 @@ export const apiRoutes = {
                 console.error("Error deleting case:", error);
                 throw error;
             });
+    },
+
+    createCaseByIdUser: async(id, data) => {
+        return axios.post(`${API_URI}/api/cases/usuario/${id}`, data, config)
+            .then(response => response.data)
+            .catch(error => {
+                console.error("Error creating case by user ID:", error);
+                throw error;
+            });
+    },
+
+    getCasesByUserId: async (id) => {
+      return axios.get(`${API_URI}/api/cases/usuario/${id}/casos`, config)
+        .then(response => response.data)
+        .catch(error => {
+          console.error("Error fetching cases by user ID:", error);
+          throw error;
+        });
     },
 
     //Users

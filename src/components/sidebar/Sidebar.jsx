@@ -2,9 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 import icon from "../../assets/icon.png";
+import useUserData from "../../hooks/useUserData";
 
 function Sidebar() {
   const tipoUsuario = localStorage.getItem("tipoUsuario")?.toLowerCase();
+  const userData = useUserData();
+  const userId = userData ? userData.id : null; // Obtenha o ID do usuário do localStorage
+
   return (
     <div className="sidebar">
       <div className="icon">
@@ -12,7 +16,7 @@ function Sidebar() {
       </div>
       <ul>
         <li>
-          <Link to="/dashboard">
+          <Link to={`/dashboard/${userId}`}>
             <i className="fa-solid fa-house"></i>
             <span>Painel</span>
           </Link>
@@ -24,7 +28,7 @@ function Sidebar() {
           </Link>
         </li>
         <li>
-          <Link to="/gerar-novo-caso">
+          <Link to={`/gerar-novo-caso/${userId}`}>
             <i className="fa-solid fa-plus"></i>
             <span>Adicionar Novo Caso</span>
           </Link>

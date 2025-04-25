@@ -1,88 +1,88 @@
-import React, { use, useState } from "react";
-import "./Table.css"
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import "./Table.css";
+import { Link, useNavigate } from "react-router-dom";
 import ConfirmModal from '../cardModal/Modal';
 import apiRoutes from "../../api/routes";
-import { useEffect } from "react";
 
-
-const AdminTable = () =>{
-    // const users =[
-    //     { nome: 'Heytor Pimentel', email: 'heytorpi234@gmail.com', cargo: 'Assistente'},
-    //     { nome: 'Victor Santos', email: 'victorsa234@gmail.com', cargo: 'Perito'},
-    //     { nome: 'Caio Lira', email: 'caioli234@gmail.com', cargo: 'Perito'},
-    //     { nome: 'Heytor Pimentel', email: 'heytorpi234@gmail.com', cargo: 'Assistente'},
-    //     { nome: 'Victor Santos', email: 'victorsa234@gmail.com', cargo: 'Perito'},
-    //     { nome: 'Caio Lira', email: 'caioli234@gmail.com', cargo: 'Perito'}
-    // ];
-
-    const [users, setUsers] = useState([]); // Estado para armazenar os usuários
-    const [loading, setLoading] = useState(true); // Estado de carregamento
-    const [error, setError] = useState(null); // Estado de erro
-    
+const AdminTable = () => {
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [userToDeleteId, setUserToDeleteId] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
-          try {
-            const response = await apiRoutes.getAllUsers(); // Chama a API para obter todos os usuários
-            setUsers(response); // Atualiza o estado com os usuários obtidos
-          } catch (error) {
-            console.error("Erro ao buscar usuários:", error);
-          }
+            try {
+                setLoading(true);
+                const response = await apiRoutes.getAllUsers();
+                setUsers(response);
+            } catch (error) {
+                console.error("Erro ao buscar usuários:", error);
+                setError("Erro ao carregar usuários");
+            } finally {
+                setLoading(false);
+            }
         };
-        fetchUsers(); // Chama a função para buscar os usuários
-      }, []); // O array vazio significa que isso só será executado uma vez, como componentDidMount
+        fetchUsers();
+    }, []);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-      const [userToDelete, setUserToDelete] = useState(null);
-    const Navigate = useNavigate();
-
-    const openDeleteModal = (user) => {
-        setUserToDelete(user);
+    const openDeleteModal = (userId) => {
+        setUserToDeleteId(userId);
         setIsModalOpen(true);
-      };
-      // Modal de cancelar e fechar o modal
-      const closeDeleteModal = () => {
+    };
+
+    const closeDeleteModal = () => {
         setIsModalOpen(false);
-        setUserToDelete(null);
-      };
-    
-      // Confirmar deletação
-      const confirmDeleteUser= () => {
-        // Lógica para excluir o caso com o ID 'caseToDeleteId'
-      }
-    
-    
+        setUserToDeleteId(null);
+    };
+
+    const confirmDeleteUser = async () => {
+        try {
+            await apiRoutes.deleteUser(userToDeleteId);
+            setUsers(prevUsers => prevUsers.filter(user => user._id !== userToDeleteId));
+            closeDeleteModal();
+        } catch (error) {
+            console.error("Erro ao deletar usuário:", error);
+            setError("Erro ao excluir usuário");
+        }
+    };
+
     const handleClick = () => {
-        Navigate('/cadastrar');
-      };
-    return(
-        <div className = "card-user">
+        navigate('/cadastrar');
+    };
+
+    if (loading) return <div>Carregando usuários...</div>;
+    if (error) return <div>Erro: {error}</div>;
+
+    return (
+        <div className="card-user">
             <h2>Lista de Usuários</h2>
             <button className="btn-novo" onClick={handleClick}>
-            <i class="fa-solid fa-user-plus"></i>Adicionar novo usuário
+                <i className="fa-solid fa-user-plus"></i>Novo usuário
             </button>
-
             <div className="card-info">
-                {users.map((user,index) => (
-                    <div key={index} className="user-card">
+                {users.map((user) => (
+                    <div key={user._id} className="user-card">
                         <h3>{user.nome}</h3>
-                        <p><i class="fa-solid fa-user"></i> {user.email}</p>
-                        <p><i class="fa-solid fa-briefcase"></i> {user.role}</p>
+                        <p><i className="fa-solid fa-user"></i> {user.email}</p>
+                        <p><i className="fa-solid fa-briefcase"></i> {user.role}</p>
                         <Link to={`/dashboard`} className="ver-casos">casos</Link>
                         <div className="trash">
-                        <button onClick={() => openDeleteModal(user.nome)}class="excluir">
-                        <i class="fa-solid fa-trash"></i>
-                        </button>
+                            <button onClick={() => openDeleteModal(user._id)} className="excluir">
+                                <i className="fa-solid fa-trash"></i>
+                            </button>
                         </div>
                     </div>
                 ))}
             </div>
-             <ConfirmModal
-                    isOpen={isModalOpen}
-                    onClose={closeDeleteModal}
-                    onConfirm={confirmDeleteUser}
-                    message={`Tem certeza que deseja excluir usuário ${userToDelete}?`}></ConfirmModal>
+            <ConfirmModal
+                isOpen={isModalOpen}
+                onClose={closeDeleteModal}
+                onConfirm={confirmDeleteUser}
+                message={`Tem certeza que deseja excluir este usuário?`}
+            />
         </div>
     );
 };
